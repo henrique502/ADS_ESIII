@@ -1,6 +1,0 @@
--- Links --
-
-http://epf.eclipse.org/wikis/xp/
-http://www.extremeprogramming.org/rules.html
-http://www.agilemodeling.com/artifacts/userStory.htm
-https://www.zotero.org/download/
