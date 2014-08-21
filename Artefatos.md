@@ -1,8 +1,7 @@
-Artefatos
-=========
+# Artefatos
 
 1. Visão (Vision) – Feito;
-2. Histórias de usuário (User Stories) – Em andamento;
+2. Histórias de usuário (User Stories) – *Em andamento*;
 3. Testes do Cliente (Custumer Test);
 4. Plano da Interação (Iterator Plan);
 5. Plano de Entregas (Release Plan);

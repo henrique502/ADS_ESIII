@@ -20,15 +20,14 @@ Uma boa solução seria: Ter uma aba na página mostrando as vagas
 * Empresas (Clientes do Vagas RS)
 * Atendimento (?)
 
-
-Atendimento
- Atende os clientes e cadastras as vagas - Seleciona as vagas que irão aparecer no sistema Vagas para Web.
-
-Usuários do Facebook
- Usuário do Facebook - Visualizar e filtra as vagas no sistema Vagas para Web.
-
-Empresas 
- Empresas que irão fornecer as vagas de emprego ou estágio - Fornecer os dados para atendimento cadastrar as vagas.
+> Atendimento
+> *Atende as empresas e cadastras as vagas - Seleciona as vagas que irão aparecer no sistema Vagas para Web.*
+>
+> Usuários do Facebook
+> *Visualizar e filtra as vagas no sistema Vagas para Web.*
+>
+> Empresas 
+> *Empresas que irão fornecer as vagas de emprego ou estágio - Fornecer os dados para atendimento cadastrar as vagas.*
 
 
 ## 1.3. Funções principais
@@ -40,8 +39,8 @@ Empresas
 
 ## 2. Histórias de usuário
 
-> Exemplo: As a <type of user>, I want <some goal> so that <some reason>.
+> `Exemplo: As a <type of user>, I want <some goal> so that <some reason>.`
 
-* Eu usuário, gostaria de ver só vagas  do meu curso para isso tem que ter um filtro.
-* Minha empresa quer mais destaque nos anúncios de vagas por isso a timeline.
-
+HU01. Eu usuário, gostaria de ver só vagas  do meu curso para isso tem que ter um filtro.
+HU02. Minha empresa quer mais destaque nos anúncios de vagas por isso a timeline.
+HU03. Como Cliente quero poder filtar primeiro uma cidade e/ou curso antes de ver qualquer vaga.
