@@ -6,10 +6,10 @@ Mostrar em uma aba de Facebook todas as vagas de empregos e estágios sem restriç
 
 ## 1.1. Declaração do problema
 
-1. O problema é: As ofertas que chegam ao usuário não são relevantes
-  Afeta: Usuários
-  Cujo impacto é: Clientes perdem interesse
-  Uma boa solução seria: Ter uma aba na página mostrando as vagas
+1. O problema é as ofertas que chegam ao usuário não são relevantes
+  afeta usuários do Facebook
+  cujo impacto é clientes perdem interesse
+  uma boa solução seria ter uma aba na página mostrando as vagas.
 
 ## 1.2. Envolvidos
 
