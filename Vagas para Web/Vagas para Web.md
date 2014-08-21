@@ -6,11 +6,10 @@ Mostrar em uma aba de Facebook todas as vagas de empregos e estágios sem restriç
 
 ## 1.1. Declaração do problema
 
-### P1.
-O problema é: As ofertas que chegam ao usuário não são relevantes
-Afeta: Usuários
-Cujo impacto é: Clientes perdem interesse
-Uma boa solução seria: Ter uma aba na página mostrando as vagas
+1. O problema é: As ofertas que chegam ao usuário não são relevantes
+  Afeta: Usuários
+  Cujo impacto é: Clientes perdem interesse
+  Uma boa solução seria: Ter uma aba na página mostrando as vagas
 
 ## 1.2. Envolvidos
 
@@ -20,14 +19,11 @@ Uma boa solução seria: Ter uma aba na página mostrando as vagas
 * Empresas (Clientes do Vagas RS)
 * Atendimento (?)
 
-> Atendimento
-> *Atende as empresas e cadastras as vagas - Seleciona as vagas que irão aparecer no sistema Vagas para Web.*
+> Atendimento - *Atende as empresas e cadastras as vagas - Seleciona as vagas que irão aparecer no sistema Vagas para Web.*
 >
-> Usuários do Facebook
-> *Visualizar e filtra as vagas no sistema Vagas para Web.*
+> Usuários do Facebook - *Visualizar e filtra as vagas no sistema Vagas para Web.*
 >
-> Empresas 
-> *Empresas que irão fornecer as vagas de emprego ou estágio - Fornecer os dados para atendimento cadastrar as vagas.*
+> Empresas - *Empresas que irão fornecer as vagas de emprego ou estágio - Fornecer os dados para atendimento cadastrar as vagas.*
 
 
 ## 1.3. Funções principais
@@ -41,6 +37,6 @@ Uma boa solução seria: Ter uma aba na página mostrando as vagas
 
 > `Exemplo: As a <type of user>, I want <some goal> so that <some reason>.`
 
-HU01. Eu usuário, gostaria de ver só vagas  do meu curso para isso tem que ter um filtro.
-HU02. Minha empresa quer mais destaque nos anúncios de vagas por isso a timeline.
-HU03. Como Cliente quero poder filtar primeiro uma cidade e/ou curso antes de ver qualquer vaga.
+1. Eu usuário, gostaria de ver só vagas do meu curso para isso tem que ter um filtro.
+2. Minha empresa quer mais destaque nos anúncios de vagas por isso a timeline.
+3. Como Cliente quero poder filtar primeiro uma cidade e/ou curso antes de ver qualquer vaga.
