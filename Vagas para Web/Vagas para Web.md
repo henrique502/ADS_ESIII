@@ -40,3 +40,22 @@ Mostrar em uma aba de Facebook todas as vagas de empregos e estágios sem restriç
 1. Eu usuário, gostaria de ver só vagas do meu curso para isso tem que ter um filtro.
 2. Minha empresa quer mais destaque nos anúncios de vagas por isso a timeline.
 3. Como Cliente quero poder filtar primeiro uma cidade e/ou curso antes de ver qualquer vaga.
+
+## 3. Testes
+
+
+1.1. entrada: (cursoId)
+     [34]
+1.2. entrada: (cursoId)
+     [1]
+1.3. entrada: (cursoId, cidadeId)
+     [1, 35]
+
+### Operação inválidas
+
+1.1. entrada: (curso)
+     [-15]
+1.2. entrada: (curso)
+     [Recurso Humano]
+1.3. entrada: (cursoId, cidadeId)
+     [1, 0]
