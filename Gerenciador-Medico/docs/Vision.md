@@ -36,8 +36,8 @@ identificaram o problema no agendamento de consultas e no controle das mesmas.
 2. Como secretaria eu gostaria de Agendar consultas mediante a solicitação do Paciente.
 3. Como secretaria eu gostaria de Agendar consultas de acordo com particular ou convenio.
 4. Sendo que o Sistema deverá armazenar registros de consultas e historicos de Pacientes.
-5. Sendo que o Sistema deverá organizar os registros de Agendas por Data e de Pacientes por Nome.
-6. Sou o Medico e a secretaria poder�o pesquisar as consultas e os pacientes.
+5. Como secretária gostaria de ver todos pacientes da data desejada.
+6. Sou o Medico e a secretaria poderão pesquisar as consultas e os pacientes.
 
 ## 3. Testes
 ### Operação válidas
