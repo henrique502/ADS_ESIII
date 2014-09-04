@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.security.auth.x500.X500PrivateCredential;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
@@ -36,7 +37,7 @@ public class Application extends WindowAdapter implements Runnable {
 			window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			window.setTitle("Carregando...");
 			window.setVisible(true);
-			
+
 			new HomeController(window, jdbc);
 		} catch(Exception e){
 			closeAll();

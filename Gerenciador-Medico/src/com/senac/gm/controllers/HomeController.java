@@ -1,6 +1,7 @@
 package com.senac.gm.controllers;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 import com.senac.gm.jdbc.JDBC;
 
@@ -13,8 +14,7 @@ public class HomeController implements Controller {
 		this.window = window;
 		this.jdbc = jdbc;
 		
-		jdbc = null;
-		jdbc.getInstance();
+		JMenuBar menu = window.getJMenuBar();
 	}
 
 }
