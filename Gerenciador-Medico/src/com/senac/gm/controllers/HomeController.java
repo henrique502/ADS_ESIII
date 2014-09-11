@@ -10,30 +10,24 @@ import java.net.URL;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import com.senac.gm.jdbc.JDBC;
+import com.senac.gm.Application;
 
 public class HomeController implements Controller {
 	
-	private JFrame window;
-	private JDBC jdbc;
-	
-	public HomeController(JFrame window, JDBC jdbc) {
-		this.window = window;
-		this.jdbc = jdbc;
+	public HomeController() {
 		setup();
 	}
 
 	private void setup() {
-		window.setTitle("Gerenciador Médico");
+		Application.data.window.setTitle("Gerenciador Médico");
 		
-		JMenuBar menu = window.getJMenuBar();
+		JMenuBar menu = Application.data.window.getJMenuBar();
 		
 		/* Programa */
 		JMenu programa = new JMenu("Programa");
@@ -82,7 +76,7 @@ public class HomeController implements Controller {
 		/* Image */
 		
 		JPanel panel = new LogoPanel();
-		window.add(panel, BorderLayout.CENTER);
+		Application.data.window.add(panel, BorderLayout.CENTER);
 	}
 }
 

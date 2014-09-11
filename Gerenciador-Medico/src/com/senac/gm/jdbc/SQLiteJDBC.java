@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.senac.gm.Application;
+
 /**
  * @see http://www.tutorialspoint.com/sqlite/sqlite_java.htm
  */
@@ -14,7 +16,6 @@ public class SQLiteJDBC implements JDBC {
 	
 	private static Connection connection = null;
 	private static List<Statement> statements = null;
-	public static final int DATABASE_VERSION = 1;
 	
 	public SQLiteJDBC(){}
 	
@@ -23,7 +24,7 @@ public class SQLiteJDBC implements JDBC {
 		if(connection == null){
 			try {
 				Class.forName("org.sqlite.JDBC");
-				connection = DriverManager.getConnection("jdbc:sqlite:database-v" + DATABASE_VERSION +".db");
+				connection = DriverManager.getConnection("jdbc:sqlite:" + Application.data.config.getProperty("db_name") +".db");
 				statements = new ArrayList<Statement>();
 			} catch (Exception e){
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );

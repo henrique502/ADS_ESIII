@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -17,27 +20,30 @@ import com.senac.gm.jdbc.SQLiteJDBC;
 
 public class Application extends WindowAdapter implements Runnable {
 	
-	private JDBC jdbc = null;
-	private JFrame window = null;
-	private Dimension size = new Dimension(800, 600); 
-	
+	public static Data data = null;
+
 	@Override
 	public void run() {
 		try {
+			
+			data = new Data();
+			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			jdbc = new SQLiteJDBC();
-			window = new JFrame();
-			window.addWindowListener(this);
-			window.setPreferredSize(size);
-			window.setMinimumSize(size);
-			window.setLocationRelativeTo(null);
-			window.setJMenuBar(new JMenuBar());
-			window.setLayout(new BorderLayout());
-			window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-			window.setTitle("Carregando...");
-			window.setVisible(true);
+			data.jdbc = new SQLiteJDBC();
+			data.window = new JFrame();
+			data.window.addWindowListener(this);
+			
+			loadConfig();
+			setWindowSize();
+			
+			data.window.setLocationRelativeTo(null);
+			data.window.setJMenuBar(new JMenuBar());
+			data.window.setLayout(new BorderLayout());
+			data.window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+			data.window.setTitle("Carregando...");
+			data.window.setVisible(true);
 
-			new HomeController(window, jdbc);
+			new HomeController();
 		} catch(Exception e){
 			closeAll();
 			e.printStackTrace();
@@ -45,10 +51,28 @@ public class Application extends WindowAdapter implements Runnable {
 		}
 	}
 	
+	private void loadConfig() throws IOException {
+		data.config = new Properties();
+		InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+		data.config.load(input);
+		if(input == null)
+			System.err.println("config.properties nao encontrado");
+		
+		input.close();
+	}
+	
+	private void setWindowSize() {
+		int width = Integer.parseInt(data.config.getProperty("screen_width"));
+		int height = Integer.parseInt(data.config.getProperty("screen_height"));
+		
+		data.window.setPreferredSize(new Dimension(width, height));
+		data.window.setMinimumSize(new Dimension(width, height));
+	}
+
 	@Override
-	public void windowClosing(WindowEvent e) {
+	public void windowClosing(WindowEvent e){
 		closeAll();
-		super.windowClosing(e);
+		System.exit(0);
 	}
 	
 	public static void main(String[] args) {
@@ -56,10 +80,16 @@ public class Application extends WindowAdapter implements Runnable {
 	}
 	
 	private void closeAll(){
-		if(jdbc != null)
-			jdbc.close();
+		if(data.jdbc != null)
+			data.jdbc.close();
 		
-		if(window != null)
-			window.dispose();
+		if(data.window != null)
+			data.window.dispose();
+	}
+	
+	public class Data {
+		public JDBC jdbc;
+		public JFrame window;
+		public Properties config;
 	}
 }
