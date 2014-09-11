@@ -28,4 +28,12 @@ public class AgendaTest {
 		List<Consulta> consultas = Agenda.getConsultas("2014-06-06", "2014-07-06");
 		assertEquals(2, consultas.size());
 	}
+	
+	@Test
+	public void test3() {
+		// entrada: 
+		
+		List<Consulta> consultas = Agenda.getConsultas();
+		assertEquals(2, consultas.size());
+	}
 }
