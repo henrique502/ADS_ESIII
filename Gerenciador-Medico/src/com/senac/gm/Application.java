@@ -29,6 +29,7 @@ public class Application extends WindowAdapter implements Runnable {
 			data = new Data();
 			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			
 			data.jdbc = new SQLiteJDBC();
 			data.window = new JFrame();
 			data.window.addWindowListener(this);
