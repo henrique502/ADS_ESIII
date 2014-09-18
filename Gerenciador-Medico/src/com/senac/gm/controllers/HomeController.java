@@ -2,29 +2,20 @@ package com.senac.gm.controllers;
 
 import java.awt.BorderLayout;
 import java.awt.Event;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.net.URL;
 
 import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
 import javax.swing.KeyStroke;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 import com.senac.gm.Application;
-import com.senac.gm.ui.ButtonColumn;
+import com.senac.gm.views.AgendaView;
+import com.toedter.calendar.JCalendar;
+
 
 public class HomeController implements Controller {
 	
@@ -43,28 +34,20 @@ public class HomeController implements Controller {
 
 		
 		
-		JPanel container = new JPanel(new BorderLayout());
+		AgendaView agenda = new AgendaView();
+		agenda.setData(getAgendaData());
 		
-		String[][] data = getAgendaData();
-		String[] columnNames = {"Paciente", "Médico", "Data", ""};
-		JTable table = new JTable(data, columnNames);
+		JPanel leftPanel = new JPanel(new BorderLayout(5,5));
 		
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.setRowHeight(30);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setSize(container.getSize());
-		table.setFillsViewportHeight(true);
+		JCalendar calendario = new JCalendar();
+		leftPanel.add(calendario, BorderLayout.NORTH);
 		
-		container.add(table.getTableHeader(), BorderLayout.PAGE_START);
-		container.add(scrollPane, BorderLayout.CENTER);
-		
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JPanel(), scrollPane);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, agenda);
 		Application.data.window.add(splitPane, BorderLayout.CENTER);
 		splitPane.setDividerLocation(200);
 		splitPane.setEnabled(false);
-		
-		ButtonColumn buttonColumn = new ButtonColumn(table, null, 3);
+
 	}
 
 	private String[][] getAgendaData() {
@@ -113,31 +96,5 @@ public class HomeController implements Controller {
 		
 		menu.add(Box.createHorizontalGlue());
 		menu.add(ajuda);
-	}
-
-	private class MyTableModel extends AbstractTableModel {
-
-	    public boolean isCellEditable(int row, int column){  
-	        return false;  
-	    }
-
-		@Override
-		public int getColumnCount() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public int getRowCount() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-		@Override
-		public Object getValueAt(int arg0, int arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
 	}
 }
