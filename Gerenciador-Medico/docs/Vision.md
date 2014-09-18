@@ -40,8 +40,37 @@ identificaram o problema no agendamento de consultas e no controle das mesmas.
 6. Sou o Medico e a secretaria poderão pesquisar as consultas e os pacientes.
 
 ## 3. Testes
-### Operação válidas
+
 
 
 ### Operação inválidas
+
+
+
+## 3. Testes
+
+### Operação válidas
+1.1. entrada: (dataInicial)
+					["2014-06-06"]
+					["2014/06/06"]
+					
+1.2. entrada: (dataFinal)
+            [2014-07-06]
+            [2014/07/06]
+1.3. entrada: (dataInicial, dataFinal)
+					["2014-06-06", "2014-07-06"]
+					["2014/06/06", "2014/0/-06"]
+
+### Operação inválidas
+
+1.1.  entrada: (dataInicial)
+					["20140606"]
+					["201406"]
+1.2. entrada: (dataFinal)
+            [20140706]
+            [""]
+1.3. entrada: (dataInicial, dataFinal)
+					["20140606", "20140706"]
+
+
 
