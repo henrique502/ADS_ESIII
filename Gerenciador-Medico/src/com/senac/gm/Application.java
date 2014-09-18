@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -33,9 +34,11 @@ public class Application extends WindowAdapter implements Runnable {
 			data.jdbc = new SQLiteJDBC();
 			data.window = new JFrame();
 			data.window.addWindowListener(this);
+			data.dir = new File(System.getProperty("user.dir"));
 			
 			loadConfig();
 			setWindowSize();
+			data.jdbc.checkDatabase();
 			
 			data.window.setLocationRelativeTo(null);
 			data.window.setJMenuBar(new JMenuBar());
@@ -48,7 +51,7 @@ public class Application extends WindowAdapter implements Runnable {
 		} catch(Exception e){
 			closeAll();
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro Fatal", "Erro Fatal", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, data.dir, "Erro Fatal", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -92,5 +95,6 @@ public class Application extends WindowAdapter implements Runnable {
 		public JDBC jdbc;
 		public JFrame window;
 		public Properties config;
+		public File dir;
 	}
 }

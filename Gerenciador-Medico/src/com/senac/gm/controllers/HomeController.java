@@ -16,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.event.TableModelListener;
@@ -39,6 +40,8 @@ public class HomeController implements Controller {
 	
 		
 		
+
+		
 		
 		JPanel container = new JPanel(new BorderLayout());
 		
@@ -56,8 +59,10 @@ public class HomeController implements Controller {
 		container.add(table.getTableHeader(), BorderLayout.PAGE_START);
 		container.add(scrollPane, BorderLayout.CENTER);
 		
-		Application.data.window.add(container, BorderLayout.CENTER);
-		
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JPanel(), scrollPane);
+		Application.data.window.add(splitPane, BorderLayout.CENTER);
+		splitPane.setDividerLocation(200);
+		splitPane.setEnabled(false);
 		
 		ButtonColumn buttonColumn = new ButtonColumn(table, null, 3);
 	}
