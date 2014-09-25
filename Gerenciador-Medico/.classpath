@@ -6,6 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="src/assets/libs/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="src/assets/libs/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="src/assets/libs/sqlite-jdbc4-3.8.2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="src/assets/libs/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

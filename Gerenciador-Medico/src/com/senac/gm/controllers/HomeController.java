@@ -3,6 +3,8 @@ package com.senac.gm.controllers;
 import java.awt.BorderLayout;
 import java.awt.Event;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JMenu;
@@ -13,8 +15,12 @@ import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 
 import com.senac.gm.Application;
+import com.senac.gm.dao.AgendaDao;
+import com.senac.gm.dao.AgendaDaoSQL;
+import com.senac.gm.models.Consulta;
+import com.senac.gm.utils.DataUtil;
 import com.senac.gm.views.AgendaView;
-import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDayChooser;
 
 
 public class HomeController implements Controller {
@@ -40,8 +46,20 @@ public class HomeController implements Controller {
 		JPanel leftPanel = new JPanel(new BorderLayout(5,5));
 		
 		
-		JCalendar calendario = new JCalendar();
+		JDayChooser calendario = new JDayChooser();
+		
+		//calendario.addMouseListener(null);
+		
+		
+		// setSelectableDateRange
+		
 		leftPanel.add(calendario, BorderLayout.NORTH);
+		
+		
+		
+		
+		
+		
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, agenda);
 		Application.data.window.add(splitPane, BorderLayout.CENTER);
@@ -51,14 +69,25 @@ public class HomeController implements Controller {
 	}
 
 	private String[][] getAgendaData() {
-		String[][] data = {
-				{"Henrique 1", "Teste", "9:15", "Editar"},
-				{"Henrique 2", "Teste", "9:30", "Editar"},
-				{"Henrique 3", "Teste", "9:45", "Editar"},
-				{"Henrique 4", "Teste", "10:00", "Editar"},
-				{"Henrique 5", "Teste", "13:30", "Editar"},
-				{"Henrique 6", "Teste", "13:50", "Editar"}
-		   };
+		AgendaDao agendaDao = new AgendaDaoSQL();
+		String[][] data = null;
+		
+		try {
+			ArrayList<Consulta> consultas = agendaDao.getConsultas();
+			data = new String[consultas.size()][3];
+			
+			for(int i = 0; i < consultas.size(); i++){
+				Consulta consulta = consultas.get(i);
+				
+				data[i][0] = consulta.getPaciente().getNome();
+				data[i][1] = consulta.getMedico().getNome();
+				data[i][2] = DataUtil.timeView.format(consulta.getData());
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		return data;
 	}
 

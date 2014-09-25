@@ -17,7 +17,7 @@ import javax.swing.UIManager;
 
 import com.senac.gm.controllers.HomeController;
 import com.senac.gm.jdbc.JDBC;
-import com.senac.gm.jdbc.SQLiteJDBC;
+import com.senac.gm.jdbc.MySQLConnection;
 
 public class Application extends WindowAdapter implements Runnable {
 	
@@ -31,14 +31,13 @@ public class Application extends WindowAdapter implements Runnable {
 			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			
-			data.jdbc = new SQLiteJDBC();
+			data.jdbc = new MySQLConnection();
 			data.window = new JFrame();
 			data.window.addWindowListener(this);
 			data.dir = new File(System.getProperty("user.dir"));
 			
 			loadConfig();
 			setWindowSize();
-			data.jdbc.checkDatabase();
 			
 			data.window.setLocationRelativeTo(null);
 			data.window.setJMenuBar(new JMenuBar());

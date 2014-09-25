@@ -36,6 +36,12 @@ public class AgendaView extends JPanel {
 		add(table.getTableHeader(), BorderLayout.PAGE_START);
 		add(scrollPane, BorderLayout.CENTER);
 		
+		
+		
+		
+		
+		
+		
 	}
 	
 	public void setData(Object[][] data){
