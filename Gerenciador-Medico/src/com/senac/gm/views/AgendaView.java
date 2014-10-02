@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
@@ -37,10 +38,11 @@ public class AgendaView extends JPanel {
 		table.getTableHeader().setEnabled(false);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		table.setFillsViewportHeight(true);
 		table.setSelectionModel(new AgendaSelectionModel());
 		
-		add(table.getTableHeader(), BorderLayout.PAGE_START);
+		//add(table.getTableHeader(), BorderLayout.PAGE_START);
 		add(scrollPane, BorderLayout.CENTER);
 		
 		formulario = new ConsultaView();
@@ -109,7 +111,9 @@ public class AgendaView extends JPanel {
 		}
 
 		@Override
-		public void clearSelection(){}
+		public void clearSelection(){
+			formulario.clearInfo();
+		}
 
 		@Override
 		public void removeSelectionInterval(int index0, int index1) {}
@@ -121,11 +125,12 @@ public class AgendaView extends JPanel {
 			
 			lastRow = table.getSelectedRow();
 			if(lastRow < 0){
-				formulario.setEnabled(false);
+				formulario.clearInfo();
 			} else {
 				int modelRow = table.convertRowIndexToModel(lastRow);
 				formulario.carregaInfo(consultas.get(modelRow));
-				formulario.setEnabled(true);
+				
+				updateUI();
 			}
 		}
 	}
