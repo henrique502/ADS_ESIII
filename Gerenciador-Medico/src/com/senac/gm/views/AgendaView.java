@@ -2,6 +2,7 @@ package com.senac.gm.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JPanel;
@@ -12,12 +13,18 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
+import com.senac.gm.models.Consulta;
+import com.senac.gm.utils.DataUtil;
+
 public class AgendaView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private String[] columnNames = {"Paciente", "Médico", "Data"};
 	private Object[][] data = null;
+	private ArrayList<Consulta> consultas;
+	
+	private ConsultaView formulario;
 	
 	public AgendaView() {
 		super(new BorderLayout(5, 5));
@@ -36,15 +43,25 @@ public class AgendaView extends JPanel {
 		add(table.getTableHeader(), BorderLayout.PAGE_START);
 		add(scrollPane, BorderLayout.CENTER);
 		
-		
-		
-		
-		
-		
-		
+		formulario = new ConsultaView();
+		add(formulario, BorderLayout.SOUTH);
 	}
 	
-	public void setData(Object[][] data){
+	public void setData(ArrayList<Consulta> dados){
+		String[][] data = null;
+		
+		data = new String[dados.size()][3];
+				
+		for(int i = 0; i < dados.size(); i++){
+			Consulta consulta = dados.get(i);
+					
+					
+			data[i][0] = consulta.getPaciente().getNome();
+			data[i][1] = consulta.getMedico().getNome();
+			data[i][2] = DataUtil.timeView.format(consulta.getData());
+		}
+
+		this.consultas = dados;
 		this.data = data;
 	}
 	
@@ -103,12 +120,12 @@ public class AgendaView extends JPanel {
 				return;
 			
 			lastRow = table.getSelectedRow();
-			
 			if(lastRow < 0){
-				System.out.println("a");
+				formulario.setEnabled(false);
 			} else {
 				int modelRow = table.convertRowIndexToModel(lastRow);
-				System.out.println(data[modelRow][0]);
+				formulario.carregaInfo(consultas.get(modelRow));
+				formulario.setEnabled(true);
 			}
 		}
 	}

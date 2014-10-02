@@ -18,7 +18,6 @@ import com.senac.gm.Application;
 import com.senac.gm.dao.AgendaDao;
 import com.senac.gm.dao.AgendaDaoSQL;
 import com.senac.gm.models.Consulta;
-import com.senac.gm.utils.DataUtil;
 import com.senac.gm.views.AgendaView;
 import com.toedter.calendar.JDayChooser;
 
@@ -33,12 +32,6 @@ public class HomeController implements Controller {
 		Application.data.window.setTitle("Gerenciador Médico");
 		
 		setupMenu();
-		
-	
-		
-		
-
-		
 		
 		AgendaView agenda = new AgendaView();
 		agenda.setData(getAgendaData());
@@ -68,27 +61,16 @@ public class HomeController implements Controller {
 
 	}
 
-	private String[][] getAgendaData() {
+	private ArrayList<Consulta> getAgendaData() {
 		AgendaDao agendaDao = new AgendaDaoSQL();
-		String[][] data = null;
-		
-		try {
-			ArrayList<Consulta> consultas = agendaDao.getConsultas();
-			data = new String[consultas.size()][3];
-			
-			for(int i = 0; i < consultas.size(); i++){
-				Consulta consulta = consultas.get(i);
-				
-				data[i][0] = consulta.getPaciente().getNome();
-				data[i][1] = consulta.getMedico().getNome();
-				data[i][2] = DataUtil.timeView.format(consulta.getData());
-			}
 
+		try {
+			return agendaDao.getConsultas();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return data;
+		return null;
 	}
 
 	private void setupMenu() {
