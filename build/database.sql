@@ -15,11 +15,6 @@ Date: 2014-09-24 22:04:39
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Records of consultas
--- ----------------------------
-INSERT INTO `consultas` VALUES ('1', '2', '4', '2014-10-09 20:15:00', '0', '');
-INSERT INTO `consultas` VALUES ('2', '3', '2', '2014-10-09 20:40:00', '0', 'Ira se atrazar');
 
 -- ----------------------------
 -- Table structure for `medicos`
@@ -74,3 +69,8 @@ CREATE TABLE `consultas` (
   CONSTRAINT `fk_medicos_has_pacientes_pacientes1` FOREIGN KEY (`paciente`) REFERENCES `pacientes` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of consultas
+-- ----------------------------
+INSERT INTO `consultas` VALUES ('1', '2', '4', '2014-10-09 20:15:00', '0', '');
+INSERT INTO `consultas` VALUES ('2', '3', '2', '2014-10-09 20:40:00', '0', 'Ira se atrazar');
