@@ -2,6 +2,7 @@ package com.senac.gm.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DataUtil {
 
@@ -14,4 +15,12 @@ public class DataUtil {
 	public static final DateFormat dateTimeView = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 	
+	public static boolean compareDate(Date one, Date two){
+		if(one == null) return false;
+		if(two == null) return false;
+		
+		System.out.println(dateFormat.format(one) + " = " + dateFormat.format(two));
+		
+		return dateFormat.format(one).equals(dateFormat.format(two));
+	}
 }

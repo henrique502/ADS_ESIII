@@ -2,11 +2,16 @@ package com.senac.gm.controllers;
 
 import java.awt.BorderLayout;
 import java.awt.Event;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -18,11 +23,16 @@ import com.senac.gm.Application;
 import com.senac.gm.dao.AgendaDao;
 import com.senac.gm.dao.AgendaDaoSQL;
 import com.senac.gm.models.Consulta;
+import com.senac.gm.utils.DataUtil;
 import com.senac.gm.views.AgendaView;
-import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JCalendar;
 
 
 public class HomeController implements Controller {
+	
+	private Date currentDate;
+	private JCalendar calendario;
+	private AgendaView agenda;
 	
 	public HomeController() {
 		setup();
@@ -33,39 +43,87 @@ public class HomeController implements Controller {
 		
 		setupMenu();
 		
-		AgendaView agenda = new AgendaView();
-		agenda.setData(getAgendaData());
+		currentDate = new Date();
+		
+		agenda = new AgendaView();
+		agenda.setData(getAgendaData(currentDate));
 		
 		JPanel leftPanel = new JPanel(new BorderLayout(5,5));
 		
+		JPanel calendarioPainel = new JPanel(new BorderLayout());
+		calendario = new JCalendar(currentDate);
+		//calendario.setSelectableDateRange();
+		calendarioPainel.add(calendario, BorderLayout.CENTER);
 		
-		JDayChooser calendario = new JDayChooser();
+		JPanel buttonsPanel = new JPanel(new GridLayout(1, 3, 5, 5));
+		JButton button = new JButton("Atualizar");
+		button.addActionListener(updateTableContent());
+		buttonsPanel.add(button);
 		
-		//calendario.addMouseListener(null);
+		button = new JButton("Hoje");
+		button.addActionListener(setDataHoje());
+		buttonsPanel.add(button);
 		
+		button = new JButton("Selecionar Data");
+		button.addActionListener(setNewData());
+		buttonsPanel.add(button);
 		
-		// setSelectableDateRange
-		
-		leftPanel.add(calendario, BorderLayout.NORTH);
-		
-		
-		
-		
-		
-		
+		calendarioPainel.add(buttonsPanel, BorderLayout.SOUTH);
+		leftPanel.add(calendarioPainel, BorderLayout.NORTH);
 		
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, agenda);
 		Application.data.window.add(splitPane, BorderLayout.CENTER);
-		splitPane.setDividerLocation(200);
+		splitPane.setDividerLocation(250);
 		splitPane.setEnabled(false);
 
 	}
-
-	private ArrayList<Consulta> getAgendaData() {
+	
+	private ActionListener setNewData(){
+		return new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				Date data = calendario.getDate();
+				
+				if(DataUtil.compareDate(currentDate, data) == false){
+				
+					currentDate = data;
+					agenda.setData(getAgendaData(currentDate));
+				}
+			}
+		};
+	}
+	
+	private ActionListener updateTableContent(){
+		return new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				agenda.setData(getAgendaData(currentDate));
+			}
+		};
+	}
+	
+	private ActionListener setDataHoje(){
+		return new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Date data = new Date();
+				
+				if(DataUtil.compareDate(currentDate, data) == false){
+				
+					currentDate = data;
+					agenda.setData(getAgendaData(currentDate));
+				}
+			}
+		};
+	}
+	
+	private ArrayList<Consulta> getAgendaData(Date data) {
 		AgendaDao agendaDao = new AgendaDaoSQL();
-
+		
+		System.out.println("update");
+		
 		try {
-			return agendaDao.getConsultas();
+			return agendaDao.getConsultas(data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -94,10 +152,6 @@ public class HomeController implements Controller {
 		JMenuItem agendaHoje = new JMenuItem("Hoje");
 		agendaHoje.setMnemonic('H');
 		agenda.add(agendaHoje);
-		
-		JMenuItem agendaBuscar = new JMenuItem("Procurar");
-		agendaBuscar.setMnemonic('P');
-		agenda.add(agendaBuscar);
 		
 		menu.add(agenda);
 		

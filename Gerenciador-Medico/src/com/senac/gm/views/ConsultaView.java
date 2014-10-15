@@ -3,8 +3,6 @@ package com.senac.gm.views;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -83,13 +81,7 @@ public class ConsultaView extends JPanel {
 		add(coluna, BorderLayout.EAST);
 		
 		JButton button = new JButton("Editar");
-		button.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				clearInfo();
-			}
-		});
+		button.setEnabled(false);
 		
 		coluna.add(button);
 		

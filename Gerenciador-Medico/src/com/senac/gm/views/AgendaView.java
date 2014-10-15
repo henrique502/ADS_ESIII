@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
@@ -21,7 +22,7 @@ public class AgendaView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private String[] columnNames = {"Paciente", "Médico", "Data"};
+	private String[] columnNames = {"Paciente", "Médico", "Hóra"};
 	private Object[][] data = null;
 	private ArrayList<Consulta> consultas;
 	
@@ -42,11 +43,16 @@ public class AgendaView extends JPanel {
 		table.setFillsViewportHeight(true);
 		table.setSelectionModel(new AgendaSelectionModel());
 		
-		//add(table.getTableHeader(), BorderLayout.PAGE_START);
-		add(scrollPane, BorderLayout.CENTER);
+		JPanel tablePanel = new JPanel(new BorderLayout());
+		tablePanel.add(table.getTableHeader(), BorderLayout.PAGE_START);
+		tablePanel.add(scrollPane, BorderLayout.CENTER);
 		
 		formulario = new ConsultaView();
-		add(formulario, BorderLayout.SOUTH);
+
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, tablePanel, formulario);
+		add(splitPane, BorderLayout.CENTER);
+		splitPane.setDividerLocation(530);
+		splitPane.setEnabled(true);
 	}
 	
 	public void setData(ArrayList<Consulta> dados){
@@ -65,6 +71,7 @@ public class AgendaView extends JPanel {
 
 		this.consultas = dados;
 		this.data = data;
+		table.updateUI();
 	}
 	
 	private class AgendaTableRender extends AbstractTableModel {
