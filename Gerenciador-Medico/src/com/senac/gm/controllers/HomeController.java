@@ -64,7 +64,7 @@ public class HomeController implements Controller {
 		button.addActionListener(setDataHoje());
 		buttonsPanel.add(button);
 		
-		button = new JButton("Selecionar Data");
+		button = new JButton("Selecionar");
 		button.addActionListener(setNewData());
 		buttonsPanel.add(button);
 		
@@ -74,8 +74,7 @@ public class HomeController implements Controller {
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, agenda);
 		Application.data.window.add(splitPane, BorderLayout.CENTER);
 		splitPane.setDividerLocation(250);
-		splitPane.setEnabled(false);
-
+		splitPane.setEnabled(true);
 	}
 	
 	private ActionListener setNewData(){
@@ -119,9 +118,7 @@ public class HomeController implements Controller {
 	
 	private ArrayList<Consulta> getAgendaData(Date data) {
 		AgendaDao agendaDao = new AgendaDaoSQL();
-		
-		System.out.println("update");
-		
+
 		try {
 			return agendaDao.getConsultas(data);
 		} catch (SQLException e) {

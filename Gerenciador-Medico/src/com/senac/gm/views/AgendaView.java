@@ -22,7 +22,7 @@ public class AgendaView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-	private String[] columnNames = {"Paciente", "Médico", "Hóra"};
+	private String[] columnNames = {"Paciente", "Médico", "Hora"};
 	private Object[][] data = null;
 	private ArrayList<Consulta> consultas;
 	

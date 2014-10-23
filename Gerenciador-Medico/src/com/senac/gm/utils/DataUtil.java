@@ -18,9 +18,7 @@ public class DataUtil {
 	public static boolean compareDate(Date one, Date two){
 		if(one == null) return false;
 		if(two == null) return false;
-		
-		System.out.println(dateFormat.format(one) + " = " + dateFormat.format(two));
-		
+
 		return dateFormat.format(one).equals(dateFormat.format(two));
 	}
 }
